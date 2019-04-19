@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net">
+  <!--<object name="DbSessionFactory" type="Heima8.OA.DALFactory.DbSessionFactory, Heima8.OA.DALFactory" singleton="true"  >
+  </object>-->
+
+  <!--spring.net 通过工厂的实例方法来创建对象的配置demo-->
+  <!--<object name="DbSession" type="Heima8.OA.DALFactory.DbSession, Heima8.OA.DALFactory" singleton="false"  factory-method="GetCurrentDbSession" factory-object="DbSessionFactory" >
+  </object>-->
+
+<!--spring.net 通过工厂的一个静态方法来创建对象的 配置demo。  type就直接配置到工厂类型就可以了。-->
+  <object name="DbSession" type="Pstoh.OA.DALFactory.DbSessionFactory, Pstoh.OA.DALFactory" singleton="false"  factory-method="GetCurrentDbSession"  >
+  </object>
+
+  <object name="OrderInfoDal" type="Pstoh.OA.EFDAL.OrderInfoDal, Pstoh.OA.EFDAL" singleton="false" >
+  </object>
+
+
+  <object name="UserInfoDal" type="Pstoh.OA.EFDAL.UserInfoDal, Pstoh.OA.EFDAL" singleton="false" >
+  </object>
+ 
+</objects>

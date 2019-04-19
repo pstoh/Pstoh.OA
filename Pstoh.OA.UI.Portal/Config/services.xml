@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net">
+
+  <object name="UserInfoService" type="Pstoh.OA.BLL.UserInfoService, Pstoh.OA.BLL" singleton="false" >
+    <!--  property name="DbSession" ref="DbSession" / -->
+
+
+  </object>
+  <object name="OrderInfoService" type="Pstoh.OA.BLL.OrderInfoService, Pstoh.OA.BLL" singleton="false" >
+
+
+  </object>
+  
+</objects>
