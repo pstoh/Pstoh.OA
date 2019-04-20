@@ -13,23 +13,11 @@ namespace Pstoh.OA.EFDAL
 {
    
 		
-	public partial class C__MigrationHistoryDal:BaseDal<C__MigrationHistory>,IC__MigrationHistoryDal
-    {
-	}
-		
 	public partial class OrderInfoDal:BaseDal<OrderInfo>,IOrderInfoDal
     {
 	}
 		
-	public partial class OrderInfoesDal:BaseDal<OrderInfoes>,IOrderInfoesDal
-    {
-	}
-		
 	public partial class UserInfoDal:BaseDal<UserInfo>,IUserInfoDal
-    {
-	}
-		
-	public partial class UserInfoesDal:BaseDal<UserInfoes>,IUserInfoesDal
     {
 	}
 

@@ -5,6 +5,10 @@
     <property name="UserInfoService" ref="UserInfoService" />
   </object>
 
+  <object type="Pstoh.OA.UI.Portal.Controllers.UserLoginController, Pstoh.OA.UI.Portal" singleton="false" >
+    <property name="UserInfoService" ref="UserInfoService" />
+  </object>
+
   <object type="Pstoh.OA.UI.Portal.Controllers.OrderInfoController, Pstoh.OA.UI.Portal" singleton="false" >
     <property name="OrderInfoService" ref="OrderInfoService" />
   </object>

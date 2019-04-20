@@ -16,6 +16,8 @@ namespace Pstoh.OA.UI.Portal
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+			//初始化Log4Net配置
+			log4net.Config.XmlConfigurator.Configure();
         }
     }
 }

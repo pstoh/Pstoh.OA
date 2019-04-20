@@ -25,10 +25,7 @@ namespace Pstoh.OA.Model
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public virtual DbSet<OrderInfo> OrderInfo { get; set; }
-        public virtual DbSet<OrderInfoes> OrderInfoes { get; set; }
         public virtual DbSet<UserInfo> UserInfo { get; set; }
-        public virtual DbSet<UserInfoes> UserInfoes { get; set; }
     }
 }

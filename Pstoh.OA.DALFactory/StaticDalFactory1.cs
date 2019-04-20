@@ -21,34 +21,16 @@ namespace Pstoh.OA.DALFactory
     {
    
 	
-		public static IC__MigrationHistoryDal GetC__MigrationHistoryDal()
-		{
-			return Assembly.Load(assemblyName).CreateInstance(assemblyName + ".C__MigrationHistoryDal")
-				as IC__MigrationHistoryDal;
-		}
-	
 		public static IOrderInfoDal GetOrderInfoDal()
 		{
 			return Assembly.Load(assemblyName).CreateInstance(assemblyName + ".OrderInfoDal")
 				as IOrderInfoDal;
 		}
 	
-		public static IOrderInfoesDal GetOrderInfoesDal()
-		{
-			return Assembly.Load(assemblyName).CreateInstance(assemblyName + ".OrderInfoesDal")
-				as IOrderInfoesDal;
-		}
-	
 		public static IUserInfoDal GetUserInfoDal()
 		{
 			return Assembly.Load(assemblyName).CreateInstance(assemblyName + ".UserInfoDal")
 				as IUserInfoDal;
-		}
-	
-		public static IUserInfoesDal GetUserInfoesDal()
-		{
-			return Assembly.Load(assemblyName).CreateInstance(assemblyName + ".UserInfoesDal")
-				as IUserInfoesDal;
 		}
 	}
 }

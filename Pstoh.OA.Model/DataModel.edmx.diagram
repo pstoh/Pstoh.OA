@@ -4,14 +4,10 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c207d0e8d53b443590995fe073a096a9" Name="Diagram1">
-        <EntityTypeShape EntityType="Pstoh.OA.Model.C__MigrationHistory" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="c207d0e8d53b443590995fe073a096a9" Name="Diagram1" ZoomLevel="80">
         <EntityTypeShape EntityType="Pstoh.OA.Model.OrderInfo" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Pstoh.OA.Model.OrderInfoes" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Pstoh.OA.Model.UserInfo" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="Pstoh.OA.Model.UserInfoes" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Pstoh.OA.Model.UserInfo" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
         <AssociationConnector Association="Pstoh.OA.Model.FK_UserInfoOrderInfo" ManuallyRouted="false" />
-        <AssociationConnector Association="Pstoh.OA.Model.FK_dbo_OrderInfoes_dbo_UserInfoes_UserInfoId" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

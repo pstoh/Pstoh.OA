@@ -14,14 +14,6 @@ using Pstoh.OA.Model;
 namespace Pstoh.OA.BLL
 {
 	
-	public partial class C__MigrationHistoryService:ABaseService<C__MigrationHistory>,IC__MigrationHistoryService //crud
-    {
-		protected override void SetCurrentDal()
-        {
-            CurrentDal = DbSession.C__MigrationHistoryDal;
-        } 
-	}
-	
 	public partial class OrderInfoService:ABaseService<OrderInfo>,IOrderInfoService //crud
     {
 		protected override void SetCurrentDal()
@@ -30,27 +22,11 @@ namespace Pstoh.OA.BLL
         } 
 	}
 	
-	public partial class OrderInfoesService:ABaseService<OrderInfoes>,IOrderInfoesService //crud
-    {
-		protected override void SetCurrentDal()
-        {
-            CurrentDal = DbSession.OrderInfoesDal;
-        } 
-	}
-	
 	public partial class UserInfoService:ABaseService<UserInfo>,IUserInfoService //crud
     {
 		protected override void SetCurrentDal()
         {
             CurrentDal = DbSession.UserInfoDal;
-        } 
-	}
-	
-	public partial class UserInfoesService:ABaseService<UserInfoes>,IUserInfoesService //crud
-    {
-		protected override void SetCurrentDal()
-        {
-            CurrentDal = DbSession.UserInfoesDal;
         } 
 	}
 }

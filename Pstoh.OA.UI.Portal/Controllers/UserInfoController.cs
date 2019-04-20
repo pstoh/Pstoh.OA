@@ -1,4 +1,5 @@
 ﻿using Pstoh.OA.IBLL;
+using Pstoh.OA.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,5 +18,21 @@ namespace Pstoh.OA.UI.Portal.Controllers
 
             return View();
         }
-    }
+
+		#region 添加用户
+		public ActionResult Add()
+		{
+			return View();
+		}
+		[HttpPost]
+		public ActionResult Add(UserInfo user)
+		{
+			user.DelFlag = (short)OA.Model.Enum.DelFlagEnum.Normal;
+			user.SubTime = DateTime.Now;
+			user.ModifyOn = DateTime.Now;
+			UserInfoService.Add(user);
+			return Content("Ok");
+		}
+		#endregion
+	}
 }
