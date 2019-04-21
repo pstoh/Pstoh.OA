@@ -1,4 +1,4 @@
-﻿namespace Pstoh.OA.Common
+﻿namespace Pstoh.OA.Commons
 {
     public interface ILogWriter
     {

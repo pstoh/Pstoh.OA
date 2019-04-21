@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Pstoh.OA.Common
+namespace Pstoh.OA.Commons
 {
     //public delegate void WriteLogDel(string str);
     public class LogHelper

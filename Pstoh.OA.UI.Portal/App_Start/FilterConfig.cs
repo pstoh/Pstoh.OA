@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using Pstoh.OA.UI.Portal.Models;
+using System.Web;
 using System.Web.Mvc;
 
 namespace Pstoh.OA.UI.Portal
@@ -9,6 +10,7 @@ namespace Pstoh.OA.UI.Portal
 		{
 			//filters.Add(new HandleErrorAttribute());
 			filters.Add(new UI.Portal.Models.MyExceptionFilterAttribute());
+			filters.Add(new LoginCheckFilter() { IsCheck = true });
 		}
 	}
 }

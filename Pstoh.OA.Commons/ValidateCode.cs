@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace Pstoh.OA.Common
+namespace Pstoh.OA.Commons
 {
   public class ValidateCode
     {

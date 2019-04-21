@@ -11,7 +11,7 @@ namespace Pstoh.OA.UI.Portal.Models
 		public override void OnException(ExceptionContext filterContext)
 		{
 			base.OnException(filterContext);
-			Common.LogHelper.WriteLog(filterContext.Exception.ToString());
+			Commons.LogHelper.WriteLog(filterContext.Exception.ToString());
 		}
 	}
 }

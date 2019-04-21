@@ -1,5 +1,6 @@
 ﻿using Pstoh.OA.IBLL;
 using Pstoh.OA.Model;
+using Pstoh.OA.UI.Portal.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ using System.Web.Mvc;
 
 namespace Pstoh.OA.UI.Portal.Controllers
 {
+	[LoginCheckFilter(IsCheck =false)]
     public class UserLoginController : Controller
     {
 		public IUserInfoService UserInfoService { get; set; }
@@ -20,8 +22,9 @@ namespace Pstoh.OA.UI.Portal.Controllers
 		#region 验证码
 		public ActionResult ShowVCodee()
 		{
-			Common.ValidateCode validateCode = new Common.ValidateCode();
+			Commons.ValidateCode validateCode = new Commons.ValidateCode();
 			String vc = validateCode.CreateValidateCode(4);
+			Session["vCode"] = vc;
 			Console.WriteLine(vc);Session["vCode"] = vc; 
 			byte[] img = validateCode.CreateValidateGraphic(vc);
 			return File(img, @"image/jpeg");
@@ -38,7 +41,7 @@ namespace Pstoh.OA.UI.Portal.Controllers
 			if (String.IsNullOrEmpty(sessionCode)||
 				validateCode != sessionCode)
 			{
-				return Content("验证码错误!");
+				//return Content("验证码错误!");
 			}
 
 			//2.校验用户名密码

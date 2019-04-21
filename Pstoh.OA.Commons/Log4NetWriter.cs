@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using log4net;
 
-namespace Pstoh.OA.Common
+namespace Pstoh.OA.Commons
 {
     public class Log4NetWriter:ILogWriter
     {
