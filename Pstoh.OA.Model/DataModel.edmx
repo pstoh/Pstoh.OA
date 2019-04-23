@@ -6,45 +6,354 @@
     <edmx:StorageModels>
     <Schema Namespace="Pstoh.OA.Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityContainer Name="PstohOAModelStoreContainer">
-    <EntitySet Name="OrderInfo" EntityType="Pstoh.OA.Model.Store.OrderInfo" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="UserInfo" EntityType="Pstoh.OA.Model.Store.UserInfo" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="FK_UserInfoOrderInfo" Association="Pstoh.OA.Model.Store.FK_UserInfoOrderInfo">
+    <EntitySet Name="OrderInfo" EntityType="Pstoh.OA.Model.Store.OrderInfo" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RoleInfo" EntityType="Pstoh.OA.Model.Store.RoleInfo" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ActionInfo" EntityType="Pstoh.OA.Model.Store.ActionInfo" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="R_UserInfo_ActionInfo" EntityType="Pstoh.OA.Model.Store.R_UserInfo_ActionInfo" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserInfoExt" EntityType="Pstoh.OA.Model.Store.UserInfoExt" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MenuInfo" EntityType="Pstoh.OA.Model.Store.MenuInfo" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="WF_Temp" EntityType="Pstoh.OA.Model.Store.WF_Temp" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="WF_Instance" EntityType="Pstoh.OA.Model.Store.WF_Instance" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FileInfo" EntityType="Pstoh.OA.Model.Store.FileInfo" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="WF_Step" EntityType="Pstoh.OA.Model.Store.WF_Step" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserInfoRoleInfo" EntityType="Pstoh.OA.Model.Store.UserInfoRoleInfo" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RoleInfoActionInfo" EntityType="Pstoh.OA.Model.Store.RoleInfoActionInfo" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="WF_InstanceFileInfo" EntityType="Pstoh.OA.Model.Store.WF_InstanceFileInfo" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="UserInfoOrderInfo" Association="Pstoh.OA.Model.Store.UserInfoOrderInfo">
       <End Role="UserInfo" EntitySet="UserInfo" />
       <End Role="OrderInfo" EntitySet="OrderInfo" />
     </AssociationSet>
+    <AssociationSet Name="FK_UserInfoRoleInfo_UserInfo" Association="Pstoh.OA.Model.Store.FK_UserInfoRoleInfo_UserInfo">
+      <End Role="UserInfo" EntitySet="UserInfo" />
+      <End Role="UserInfoRoleInfo" EntitySet="UserInfoRoleInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserInfoRoleInfo_RoleInfo" Association="Pstoh.OA.Model.Store.FK_UserInfoRoleInfo_RoleInfo">
+      <End Role="RoleInfo" EntitySet="RoleInfo" />
+      <End Role="UserInfoRoleInfo" EntitySet="UserInfoRoleInfo" />
+    </AssociationSet>
+    <AssociationSet Name="UserInfoR_UserInfo_ActionInfo" Association="Pstoh.OA.Model.Store.UserInfoR_UserInfo_ActionInfo">
+      <End Role="UserInfo" EntitySet="UserInfo" />
+      <End Role="R_UserInfo_ActionInfo" EntitySet="R_UserInfo_ActionInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoleInfoActionInfo_RoleInfo" Association="Pstoh.OA.Model.Store.FK_RoleInfoActionInfo_RoleInfo">
+      <End Role="RoleInfo" EntitySet="RoleInfo" />
+      <End Role="RoleInfoActionInfo" EntitySet="RoleInfoActionInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoleInfoActionInfo_ActionInfo" Association="Pstoh.OA.Model.Store.FK_RoleInfoActionInfo_ActionInfo">
+      <End Role="ActionInfo" EntitySet="ActionInfo" />
+      <End Role="RoleInfoActionInfo" EntitySet="RoleInfoActionInfo" />
+    </AssociationSet>
+    <AssociationSet Name="ActionInfoR_UserInfo_ActionInfo" Association="Pstoh.OA.Model.Store.ActionInfoR_UserInfo_ActionInfo">
+      <End Role="ActionInfo" EntitySet="ActionInfo" />
+      <End Role="R_UserInfo_ActionInfo" EntitySet="R_UserInfo_ActionInfo" />
+    </AssociationSet>
+    <AssociationSet Name="WF_TempWF_Instance" Association="Pstoh.OA.Model.Store.WF_TempWF_Instance">
+      <End Role="WF_Temp" EntitySet="WF_Temp" />
+      <End Role="WF_Instance" EntitySet="WF_Instance" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WF_InstanceFileInfo_WF_Instance" Association="Pstoh.OA.Model.Store.FK_WF_InstanceFileInfo_WF_Instance">
+      <End Role="WF_Instance" EntitySet="WF_Instance" />
+      <End Role="WF_InstanceFileInfo" EntitySet="WF_InstanceFileInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WF_InstanceFileInfo_FileInfo" Association="Pstoh.OA.Model.Store.FK_WF_InstanceFileInfo_FileInfo">
+      <End Role="FileInfo" EntitySet="FileInfo" />
+      <End Role="WF_InstanceFileInfo" EntitySet="WF_InstanceFileInfo" />
+    </AssociationSet>
+    <AssociationSet Name="WF_InstanceWF_Step" Association="Pstoh.OA.Model.Store.WF_InstanceWF_Step">
+      <End Role="WF_Instance" EntitySet="WF_Instance" />
+      <End Role="WF_Step" EntitySet="WF_Step" />
+    </AssociationSet>
   </EntityContainer>
-  <EntityType Name="OrderInfo">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="UserInfoId" Type="int" Nullable="false" />
-  </EntityType>
   <EntityType Name="UserInfo">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="ID" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="ShowName" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="DelFlag" Type="smallint" Nullable="false" />
-    <Property Name="Remark" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="ModifyOn" Type="datetime" Nullable="false" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UName" Type="nvarchar" Nullable="true" MaxLength="32" />
+    <Property Name="Pwd" Type="nvarchar" Nullable="false" MaxLength="32" />
+    <Property Name="ShowName" Type="nvarchar" Nullable="false" MaxLength="64" />
+    <Property Name="DelFlag" Type="smallint" Nullable="false" DefaultValue="0" />
+    <Property Name="Remark" Type="nvarchar" Nullable="true" MaxLength="64" />
+    <Property Name="ModfiedOn" Type="datetime" Nullable="false" />
     <Property Name="SubTime" Type="datetime" Nullable="false" />
-    <Property Name="Pwd" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
-  <Association Name="FK_UserInfoOrderInfo">
-    <End Role="UserInfo" Type="Pstoh.OA.Model.Store.UserInfo" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
+  <EntityType Name="OrderInfo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Content" Type="nvarchar" Nullable="true" MaxLength="64" />
+    <Property Name="UserInfoID" Type="int" Nullable="false" />
+    <Property Name="DelFlag" Type="smallint" Nullable="false" DefaultValue="0" />
+  </EntityType>
+  <EntityType Name="RoleInfo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar" Nullable="false" MaxLength="32" />
+    <Property Name="SubTime" Type="datetime" Nullable="false" />
+    <Property Name="ModfiedOn" Type="datetime" Nullable="false" />
+    <Property Name="Remark" Type="nvarchar" Nullable="true" MaxLength="64" />
+    <Property Name="DelFlag" Type="smallint" Nullable="false" DefaultValue="0" />
+  </EntityType>
+  <EntityType Name="ActionInfo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SubTime" Type="datetime" Nullable="false" />
+    <Property Name="ModfiedOn" Type="datetime" Nullable="false" />
+    <Property Name="Remark" Type="nvarchar" Nullable="true" MaxLength="64" />
+    <Property Name="DelFlag" Type="smallint" Nullable="false" DefaultValue="0" />
+    <Property Name="Url" Type="nvarchar" Nullable="false" MaxLength="512" />
+    <Property Name="HttpMethd" Type="nvarchar" Nullable="true" MaxLength="32" />
+    <Property Name="ActionName" Type="nvarchar" Nullable="false" MaxLength="32" />
+    <Property Name="IsMenu" Type="bit" Nullable="false" />
+    <Property Name="MenuIcon" Type="nvarchar" Nullable="true" MaxLength="512" />
+    <Property Name="Sort" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="R_UserInfo_ActionInfo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HasPermission" Type="bit" Nullable="false" />
+    <Property Name="UserInfoID" Type="int" Nullable="false" />
+    <Property Name="ActionInfoID" Type="int" Nullable="false" />
+    <Property Name="DelFlag" Type="smallint" Nullable="false" DefaultValue="0" />
+  </EntityType>
+  <EntityType Name="UserInfoExt">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserInfoId" Type="int" Nullable="false" />
+    <Property Name="Age" Type="int" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar" Nullable="true" MaxLength="16" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="DelFlag" Type="smallint" Nullable="false" DefaultValue="0" />
+  </EntityType>
+  <EntityType Name="MenuInfo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="WF_Temp">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TepName" Type="nvarchar" Nullable="false" MaxLength="32" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="TempForm" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Remark" Type="nvarchar" Nullable="true" MaxLength="64" />
+    <Property Name="DelFlag" Type="smallint" Nullable="false" DefaultValue="0" />
+    <Property Name="SubTime" Type="datetime" Nullable="false" />
+    <Property Name="ActityType" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="WF_Instance">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="InstanceName" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="StartBy" Type="int" Nullable="false" />
+    <Property Name="StartTime" Type="datetime" Nullable="false" />
+    <Property Name="Level" Type="smallint" Nullable="false" />
+    <Property Name="Content" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Remark" Type="nvarchar" Nullable="true" MaxLength="128" />
+    <Property Name="DelFlag" Type="smallint" Nullable="false" DefaultValue="0" />
+    <Property Name="FilePath" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="WFInstanceId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="WF_TempID" Type="int" Nullable="false" />
+    <Property Name="Status" Type="smallint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FileInfo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FileName" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="FileType" Type="nvarchar" Nullable="true" MaxLength="32" />
+    <Property Name="FilePath" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="FileSize" Type="nvarchar" Nullable="true" MaxLength="32" />
+    <Property Name="Remark" Type="nvarchar" Nullable="true" MaxLength="64" />
+    <Property Name="DelFlag" Type="smallint" Nullable="false" DefaultValue="0" />
+    <Property Name="SubTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="WF_Step">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StepName" Type="nvarchar" Nullable="true" MaxLength="32" />
+    <Property Name="ProcessBy" Type="int" Nullable="false" />
+    <Property Name="SubTime" Type="datetime" Nullable="false" />
+    <Property Name="ProcessTime" Type="datetime" Nullable="false" />
+    <Property Name="ProcessResult" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="PorcessComment" Type="nvarchar" Nullable="true" MaxLength="256" />
+    <Property Name="StepStatus" Type="smallint" Nullable="false" />
+    <Property Name="IsStartStep" Type="bit" Nullable="false" />
+    <Property Name="IsEndStep" Type="bit" Nullable="false" />
+    <Property Name="ParentStepId" Type="int" Nullable="false" />
+    <Property Name="WF_InstanceID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserInfoRoleInfo">
+    <Key>
+      <PropertyRef Name="UserInfo_ID" />
+      <PropertyRef Name="RoleInfo_ID" />
+    </Key>
+    <Property Name="UserInfo_ID" Type="int" Nullable="false" />
+    <Property Name="RoleInfo_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RoleInfoActionInfo">
+    <Key>
+      <PropertyRef Name="RoleInfo_ID" />
+      <PropertyRef Name="ActionInfo_ID" />
+    </Key>
+    <Property Name="RoleInfo_ID" Type="int" Nullable="false" />
+    <Property Name="ActionInfo_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="WF_InstanceFileInfo">
+    <Key>
+      <PropertyRef Name="WF_Instance_ID" />
+      <PropertyRef Name="FileInfo_ID" />
+    </Key>
+    <Property Name="WF_Instance_ID" Type="int" Nullable="false" />
+    <Property Name="FileInfo_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="UserInfoOrderInfo">
+    <End Role="UserInfo" Type="Pstoh.OA.Model.Store.UserInfo" Multiplicity="1" />
     <End Role="OrderInfo" Type="Pstoh.OA.Model.Store.OrderInfo" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="UserInfo">
-        <PropertyRef Name="Id" />
+        <PropertyRef Name="ID" />
       </Principal>
       <Dependent Role="OrderInfo">
-        <PropertyRef Name="UserInfoId" />
+        <PropertyRef Name="UserInfoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserInfoR_UserInfo_ActionInfo">
+    <End Role="UserInfo" Type="Pstoh.OA.Model.Store.UserInfo" Multiplicity="1" />
+    <End Role="R_UserInfo_ActionInfo" Type="Pstoh.OA.Model.Store.R_UserInfo_ActionInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserInfo">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="R_UserInfo_ActionInfo">
+        <PropertyRef Name="UserInfoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ActionInfoR_UserInfo_ActionInfo">
+    <End Role="ActionInfo" Type="Pstoh.OA.Model.Store.ActionInfo" Multiplicity="1" />
+    <End Role="R_UserInfo_ActionInfo" Type="Pstoh.OA.Model.Store.R_UserInfo_ActionInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ActionInfo">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="R_UserInfo_ActionInfo">
+        <PropertyRef Name="ActionInfoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="WF_TempWF_Instance">
+    <End Role="WF_Temp" Type="Pstoh.OA.Model.Store.WF_Temp" Multiplicity="1" />
+    <End Role="WF_Instance" Type="Pstoh.OA.Model.Store.WF_Instance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WF_Temp">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WF_Instance">
+        <PropertyRef Name="WF_TempID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="WF_InstanceWF_Step">
+    <End Role="WF_Instance" Type="Pstoh.OA.Model.Store.WF_Instance" Multiplicity="1" />
+    <End Role="WF_Step" Type="Pstoh.OA.Model.Store.WF_Step" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WF_Instance">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WF_Step">
+        <PropertyRef Name="WF_InstanceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserInfoRoleInfo_UserInfo">
+    <End Role="UserInfo" Type="Pstoh.OA.Model.Store.UserInfo" Multiplicity="1" />
+    <End Role="UserInfoRoleInfo" Type="Pstoh.OA.Model.Store.UserInfoRoleInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserInfo">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="UserInfoRoleInfo">
+        <PropertyRef Name="UserInfo_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserInfoRoleInfo_RoleInfo">
+    <End Role="UserInfoRoleInfo" Type="Pstoh.OA.Model.Store.UserInfoRoleInfo" Multiplicity="*" />
+    <End Role="RoleInfo" Type="Pstoh.OA.Model.Store.RoleInfo" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="RoleInfo">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="UserInfoRoleInfo">
+        <PropertyRef Name="RoleInfo_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoleInfoActionInfo_RoleInfo">
+    <End Role="RoleInfo" Type="Pstoh.OA.Model.Store.RoleInfo" Multiplicity="1" />
+    <End Role="RoleInfoActionInfo" Type="Pstoh.OA.Model.Store.RoleInfoActionInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoleInfo">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RoleInfoActionInfo">
+        <PropertyRef Name="RoleInfo_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoleInfoActionInfo_ActionInfo">
+    <End Role="RoleInfoActionInfo" Type="Pstoh.OA.Model.Store.RoleInfoActionInfo" Multiplicity="*" />
+    <End Role="ActionInfo" Type="Pstoh.OA.Model.Store.ActionInfo" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="ActionInfo">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RoleInfoActionInfo">
+        <PropertyRef Name="ActionInfo_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WF_InstanceFileInfo_WF_Instance">
+    <End Role="WF_Instance" Type="Pstoh.OA.Model.Store.WF_Instance" Multiplicity="1" />
+    <End Role="WF_InstanceFileInfo" Type="Pstoh.OA.Model.Store.WF_InstanceFileInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WF_Instance">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WF_InstanceFileInfo">
+        <PropertyRef Name="WF_Instance_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WF_InstanceFileInfo_FileInfo">
+    <End Role="WF_InstanceFileInfo" Type="Pstoh.OA.Model.Store.WF_InstanceFileInfo" Multiplicity="*" />
+    <End Role="FileInfo" Type="Pstoh.OA.Model.Store.FileInfo" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="FileInfo">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WF_InstanceFileInfo">
+        <PropertyRef Name="FileInfo_ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -52,80 +361,452 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Pstoh.OA.Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="OrderInfo">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="UserInfoId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="UserInfo" Relationship="Self.FK_UserInfoOrderInfo" FromRole="OrderInfo" ToRole="UserInfo" />
-        </EntityType>
-        <EntityType Name="UserInfo">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="OrderInfo" Relationship="Self.FK_UserInfoOrderInfo" FromRole="UserInfo" ToRole="OrderInfo" />
-          <Property Name="ShowName" Type="String" Nullable="false" />
-          <Property Name="DelFlag" Type="Int16" Nullable="false" />
-          <Property Name="Remark" Type="String" Nullable="false" />
-          <Property Name="ModifyOn" Type="DateTime" Nullable="false" />
-          <Property Name="SubTime" Type="DateTime" Nullable="false" />
-          <Property Name="Pwd" Type="String" Nullable="false" />
-        </EntityType>
-        <Association Name="FK_UserInfoOrderInfo">
-          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" >
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="OrderInfo" Type="Self.OrderInfo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserInfo">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="OrderInfo">
-              <PropertyRef Name="UserInfoId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="OAEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="OrderInfo" EntityType="Self.OrderInfo" />
-          <EntitySet Name="UserInfo" EntityType="Self.UserInfo" />
-          <AssociationSet Name="FK_UserInfoOrderInfo" Association="Self.FK_UserInfoOrderInfo">
+          <EntitySet Name="UserInfo" EntityType="Pstoh.OA.Model.UserInfo" />
+          <EntitySet Name="OrderInfo" EntityType="Pstoh.OA.Model.OrderInfo" />
+          <EntitySet Name="RoleInfo" EntityType="Pstoh.OA.Model.RoleInfo" />
+          <EntitySet Name="ActionInfo" EntityType="Pstoh.OA.Model.ActionInfo" />
+          <EntitySet Name="R_UserInfo_ActionInfo" EntityType="Pstoh.OA.Model.R_UserInfo_ActionInfo" />
+          <EntitySet Name="UserInfoExt" EntityType="Pstoh.OA.Model.UserInfoExt" />
+          <EntitySet Name="MenuInfo" EntityType="Pstoh.OA.Model.MenuInfo" />
+          <EntitySet Name="WF_Temp" EntityType="Pstoh.OA.Model.WF_Temp" />
+          <EntitySet Name="WF_Instance" EntityType="Pstoh.OA.Model.WF_Instance" />
+          <EntitySet Name="FileInfo" EntityType="Pstoh.OA.Model.FileInfo" />
+          <EntitySet Name="WF_Step" EntityType="Pstoh.OA.Model.WF_Step" />
+          <AssociationSet Name="UserInfoOrderInfo" Association="Pstoh.OA.Model.UserInfoOrderInfo">
             <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="OrderInfo" EntitySet="OrderInfo" />
           </AssociationSet>
+          <AssociationSet Name="UserInfoRoleInfo" Association="Pstoh.OA.Model.UserInfoRoleInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="RoleInfo" EntitySet="RoleInfo" />
+          </AssociationSet>
+          <AssociationSet Name="UserInfoR_UserInfo_ActionInfo" Association="Pstoh.OA.Model.UserInfoR_UserInfo_ActionInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="R_UserInfo_ActionInfo" EntitySet="R_UserInfo_ActionInfo" />
+          </AssociationSet>
+          <AssociationSet Name="RoleInfoActionInfo" Association="Pstoh.OA.Model.RoleInfoActionInfo">
+            <End Role="RoleInfo" EntitySet="RoleInfo" />
+            <End Role="ActionInfo" EntitySet="ActionInfo" />
+          </AssociationSet>
+          <AssociationSet Name="ActionInfoR_UserInfo_ActionInfo" Association="Pstoh.OA.Model.ActionInfoR_UserInfo_ActionInfo">
+            <End Role="ActionInfo" EntitySet="ActionInfo" />
+            <End Role="R_UserInfo_ActionInfo" EntitySet="R_UserInfo_ActionInfo" />
+          </AssociationSet>
+          <AssociationSet Name="WF_TempWF_Instance" Association="Pstoh.OA.Model.WF_TempWF_Instance">
+            <End Role="WF_Temp" EntitySet="WF_Temp" />
+            <End Role="WF_Instance" EntitySet="WF_Instance" />
+          </AssociationSet>
+          <AssociationSet Name="WF_InstanceFileInfo" Association="Pstoh.OA.Model.WF_InstanceFileInfo">
+            <End Role="WF_Instance" EntitySet="WF_Instance" />
+            <End Role="FileInfo" EntitySet="FileInfo" />
+          </AssociationSet>
+          <AssociationSet Name="WF_InstanceWF_Step" Association="Pstoh.OA.Model.WF_InstanceWF_Step">
+            <End Role="WF_Instance" EntitySet="WF_Instance" />
+            <End Role="WF_Step" EntitySet="WF_Step" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
+        <EntityType Name="UserInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UName" Type="String" Nullable="true" MaxLength="32" />
+          <Property Name="Pwd" Type="String" Nullable="false" MaxLength="32" />
+          <Property Name="ShowName" Type="String" Nullable="false" MaxLength="64" />
+          <Property Name="DelFlag" Type="Int16" Nullable="false" DefaultValue="0" />
+          <Property Name="Remark" Type="String" Nullable="true" MaxLength="64" />
+          <Property Name="ModfiedOn" Type="DateTime" Nullable="false" />
+          <Property Name="SubTime" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="OrderInfo" Relationship="Pstoh.OA.Model.UserInfoOrderInfo" FromRole="UserInfo" ToRole="OrderInfo" />
+          <NavigationProperty Name="RoleInfo" Relationship="Pstoh.OA.Model.UserInfoRoleInfo" FromRole="UserInfo" ToRole="RoleInfo" />
+          <NavigationProperty Name="R_UserInfo_ActionInfo" Relationship="Pstoh.OA.Model.UserInfoR_UserInfo_ActionInfo" FromRole="UserInfo" ToRole="R_UserInfo_ActionInfo" />
+        </EntityType>
+        <EntityType Name="OrderInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Content" Type="String" Nullable="true" MaxLength="64" />
+          <Property Name="UserInfoID" Type="Int32" Nullable="false" />
+          <Property Name="DelFlag" Type="Int16" Nullable="false" DefaultValue="0" />
+          <NavigationProperty Name="UserInfo" Relationship="Pstoh.OA.Model.UserInfoOrderInfo" FromRole="OrderInfo" ToRole="UserInfo" />
+        </EntityType>
+        <EntityType Name="RoleInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="32" />
+          <Property Name="SubTime" Type="DateTime" Nullable="false" />
+          <Property Name="ModfiedOn" Type="DateTime" Nullable="false" />
+          <Property Name="Remark" Type="String" Nullable="true" MaxLength="64" />
+          <Property Name="DelFlag" Type="Int16" Nullable="false" DefaultValue="0" />
+          <NavigationProperty Name="UserInfo" Relationship="Pstoh.OA.Model.UserInfoRoleInfo" FromRole="RoleInfo" ToRole="UserInfo" />
+          <NavigationProperty Name="ActionInfo" Relationship="Pstoh.OA.Model.RoleInfoActionInfo" FromRole="RoleInfo" ToRole="ActionInfo" />
+        </EntityType>
+        <EntityType Name="ActionInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubTime" Type="DateTime" Nullable="false" />
+          <Property Name="ModfiedOn" Type="DateTime" Nullable="false" />
+          <Property Name="Remark" Type="String" Nullable="true" MaxLength="64" />
+          <Property Name="DelFlag" Type="Int16" Nullable="false" DefaultValue="0" />
+          <Property Name="Url" Type="String" Nullable="false" MaxLength="512" />
+          <Property Name="HttpMethd" Type="String" Nullable="true" MaxLength="32" />
+          <Property Name="ActionName" Type="String" Nullable="false" MaxLength="32" />
+          <Property Name="IsMenu" Type="Boolean" Nullable="false" />
+          <Property Name="MenuIcon" Type="String" Nullable="true" MaxLength="512" />
+          <Property Name="Sort" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="RoleInfo" Relationship="Pstoh.OA.Model.RoleInfoActionInfo" FromRole="ActionInfo" ToRole="RoleInfo" />
+          <NavigationProperty Name="R_UserInfo_ActionInfo" Relationship="Pstoh.OA.Model.ActionInfoR_UserInfo_ActionInfo" FromRole="ActionInfo" ToRole="R_UserInfo_ActionInfo" />
+        </EntityType>
+        <EntityType Name="R_UserInfo_ActionInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HasPermission" Type="Boolean" Nullable="false" />
+          <Property Name="UserInfoID" Type="Int32" Nullable="false" />
+          <Property Name="ActionInfoID" Type="Int32" Nullable="false" />
+          <Property Name="DelFlag" Type="Int16" Nullable="false" DefaultValue="0" />
+          <NavigationProperty Name="UserInfo" Relationship="Pstoh.OA.Model.UserInfoR_UserInfo_ActionInfo" FromRole="R_UserInfo_ActionInfo" ToRole="UserInfo" />
+          <NavigationProperty Name="ActionInfo" Relationship="Pstoh.OA.Model.ActionInfoR_UserInfo_ActionInfo" FromRole="R_UserInfo_ActionInfo" ToRole="ActionInfo" />
+        </EntityType>
+        <EntityType Name="UserInfoExt">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserInfoId" Type="Int32" Nullable="false" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <Property Name="Phone" Type="String" Nullable="true" MaxLength="16" />
+          <Property Name="Email" Type="String" Nullable="true" />
+          <Property Name="DelFlag" Type="Int16" Nullable="false" DefaultValue="0" />
+        </EntityType>
+        <EntityType Name="MenuInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="WF_Temp">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TepName" Type="String" Nullable="false" MaxLength="32" />
+          <Property Name="Description" Type="String" Nullable="true" MaxLength="Max" />
+          <Property Name="TempForm" Type="String" Nullable="true" MaxLength="Max" />
+          <Property Name="Remark" Type="String" Nullable="true" MaxLength="64" />
+          <Property Name="DelFlag" Type="Int16" Nullable="false" DefaultValue="0" />
+          <Property Name="SubTime" Type="DateTime" Nullable="false" />
+          <Property Name="ActityType" Type="String" Nullable="false" />
+          <NavigationProperty Name="WF_Instance" Relationship="Pstoh.OA.Model.WF_TempWF_Instance" FromRole="WF_Temp" ToRole="WF_Instance" />
+        </EntityType>
+        <EntityType Name="WF_Instance">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InstanceName" Type="String" Nullable="false" MaxLength="128" />
+          <Property Name="StartBy" Type="Int32" Nullable="false" />
+          <Property Name="StartTime" Type="DateTime" Nullable="false" />
+          <Property Name="Level" Type="Int16" Nullable="false" />
+          <Property Name="Content" Type="String" Nullable="true" MaxLength="Max" />
+          <Property Name="Remark" Type="String" Nullable="true" MaxLength="128" />
+          <Property Name="DelFlag" Type="Int16" Nullable="false" DefaultValue="0" />
+          <Property Name="FilePath" Type="String" Nullable="false" />
+          <Property Name="WFInstanceId" Type="Guid" Nullable="false" />
+          <Property Name="WF_TempID" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="WF_Temp" Relationship="Pstoh.OA.Model.WF_TempWF_Instance" FromRole="WF_Instance" ToRole="WF_Temp" />
+          <NavigationProperty Name="FileInfo" Relationship="Pstoh.OA.Model.WF_InstanceFileInfo" FromRole="WF_Instance" ToRole="FileInfo" />
+          <NavigationProperty Name="WF_Step" Relationship="Pstoh.OA.Model.WF_InstanceWF_Step" FromRole="WF_Instance" ToRole="WF_Step" />
+        </EntityType>
+        <EntityType Name="FileInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileName" Type="String" Nullable="false" MaxLength="128" />
+          <Property Name="FileType" Type="String" Nullable="true" MaxLength="32" />
+          <Property Name="FilePath" Type="String" Nullable="true" />
+          <Property Name="FileSize" Type="String" Nullable="true" MaxLength="32" />
+          <Property Name="Remark" Type="String" Nullable="true" MaxLength="64" />
+          <Property Name="DelFlag" Type="Int16" Nullable="false" DefaultValue="0" />
+          <Property Name="SubTime" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="WF_Instance" Relationship="Pstoh.OA.Model.WF_InstanceFileInfo" FromRole="FileInfo" ToRole="WF_Instance" />
+        </EntityType>
+        <EntityType Name="WF_Step">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StepName" Type="String" Nullable="true" MaxLength="32" />
+          <Property Name="ProcessBy" Type="Int32" Nullable="false" />
+          <Property Name="SubTime" Type="DateTime" Nullable="false" />
+          <Property Name="ProcessTime" Type="DateTime" Nullable="false" />
+          <Property Name="ProcessResult" Type="String" Nullable="false" MaxLength="256" />
+          <Property Name="PorcessComment" Type="String" Nullable="true" MaxLength="256" />
+          <Property Name="StepStatus" Type="Int16" Nullable="false" />
+          <Property Name="IsStartStep" Type="Boolean" Nullable="false" />
+          <Property Name="IsEndStep" Type="Boolean" Nullable="false" />
+          <Property Name="ParentStepId" Type="Int32" Nullable="false" />
+          <Property Name="WF_InstanceID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="WF_Instance" Relationship="Pstoh.OA.Model.WF_InstanceWF_Step" FromRole="WF_Step" ToRole="WF_Instance" />
+        </EntityType>
+        <Association Name="UserInfoOrderInfo">
+          <End Type="Pstoh.OA.Model.UserInfo" Role="UserInfo" Multiplicity="1" />
+          <End Type="Pstoh.OA.Model.OrderInfo" Role="OrderInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderInfo">
+              <PropertyRef Name="UserInfoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UserInfoRoleInfo">
+          <End Type="Pstoh.OA.Model.UserInfo" Role="UserInfo" Multiplicity="*" />
+          <End Type="Pstoh.OA.Model.RoleInfo" Role="RoleInfo" Multiplicity="*" />
+        </Association>
+        <Association Name="UserInfoR_UserInfo_ActionInfo">
+          <End Type="Pstoh.OA.Model.UserInfo" Role="UserInfo" Multiplicity="1" />
+          <End Type="Pstoh.OA.Model.R_UserInfo_ActionInfo" Role="R_UserInfo_ActionInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="R_UserInfo_ActionInfo">
+              <PropertyRef Name="UserInfoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RoleInfoActionInfo">
+          <End Type="Pstoh.OA.Model.RoleInfo" Role="RoleInfo" Multiplicity="*" />
+          <End Type="Pstoh.OA.Model.ActionInfo" Role="ActionInfo" Multiplicity="*" />
+        </Association>
+        <Association Name="ActionInfoR_UserInfo_ActionInfo">
+          <End Type="Pstoh.OA.Model.ActionInfo" Role="ActionInfo" Multiplicity="1" />
+          <End Type="Pstoh.OA.Model.R_UserInfo_ActionInfo" Role="R_UserInfo_ActionInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActionInfo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="R_UserInfo_ActionInfo">
+              <PropertyRef Name="ActionInfoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="WF_TempWF_Instance">
+          <End Type="Pstoh.OA.Model.WF_Temp" Role="WF_Temp" Multiplicity="1" />
+          <End Type="Pstoh.OA.Model.WF_Instance" Role="WF_Instance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WF_Temp">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WF_Instance">
+              <PropertyRef Name="WF_TempID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="WF_InstanceFileInfo">
+          <End Type="Pstoh.OA.Model.WF_Instance" Role="WF_Instance" Multiplicity="*" />
+          <End Type="Pstoh.OA.Model.FileInfo" Role="FileInfo" Multiplicity="*" />
+        </Association>
+        <Association Name="WF_InstanceWF_Step">
+          <End Type="Pstoh.OA.Model.WF_Instance" Role="WF_Instance" Multiplicity="1" />
+          <End Type="Pstoh.OA.Model.WF_Step" Role="WF_Step" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WF_Instance">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WF_Step">
+              <PropertyRef Name="WF_InstanceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
     <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="PstohOAModelStoreContainer" CdmEntityContainer="OAEntities">
-    <EntitySetMapping Name="OrderInfo">
-      <EntityTypeMapping TypeName="IsTypeOf(Pstoh.OA.Model.OrderInfo)">
-        <MappingFragment StoreEntitySet="OrderInfo">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Content" ColumnName="Content" />
-          <ScalarProperty Name="UserInfoId" ColumnName="UserInfoId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="UserInfo">
       <EntityTypeMapping TypeName="IsTypeOf(Pstoh.OA.Model.UserInfo)">
         <MappingFragment StoreEntitySet="UserInfo">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UName" ColumnName="UName" />
+          <ScalarProperty Name="Pwd" ColumnName="Pwd" />
           <ScalarProperty Name="ShowName" ColumnName="ShowName" />
           <ScalarProperty Name="DelFlag" ColumnName="DelFlag" />
           <ScalarProperty Name="Remark" ColumnName="Remark" />
-          <ScalarProperty Name="ModifyOn" ColumnName="ModifyOn" />
+          <ScalarProperty Name="ModfiedOn" ColumnName="ModfiedOn" />
           <ScalarProperty Name="SubTime" ColumnName="SubTime" />
-          <ScalarProperty Name="Pwd" ColumnName="Pwd" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="OrderInfo">
+      <EntityTypeMapping TypeName="IsTypeOf(Pstoh.OA.Model.OrderInfo)">
+        <MappingFragment StoreEntitySet="OrderInfo">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="UserInfoID" ColumnName="UserInfoID" />
+          <ScalarProperty Name="DelFlag" ColumnName="DelFlag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RoleInfo">
+      <EntityTypeMapping TypeName="IsTypeOf(Pstoh.OA.Model.RoleInfo)">
+        <MappingFragment StoreEntitySet="RoleInfo">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="SubTime" ColumnName="SubTime" />
+          <ScalarProperty Name="ModfiedOn" ColumnName="ModfiedOn" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="DelFlag" ColumnName="DelFlag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ActionInfo">
+      <EntityTypeMapping TypeName="IsTypeOf(Pstoh.OA.Model.ActionInfo)">
+        <MappingFragment StoreEntitySet="ActionInfo">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SubTime" ColumnName="SubTime" />
+          <ScalarProperty Name="ModfiedOn" ColumnName="ModfiedOn" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="DelFlag" ColumnName="DelFlag" />
+          <ScalarProperty Name="Url" ColumnName="Url" />
+          <ScalarProperty Name="HttpMethd" ColumnName="HttpMethd" />
+          <ScalarProperty Name="ActionName" ColumnName="ActionName" />
+          <ScalarProperty Name="IsMenu" ColumnName="IsMenu" />
+          <ScalarProperty Name="MenuIcon" ColumnName="MenuIcon" />
+          <ScalarProperty Name="Sort" ColumnName="Sort" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="R_UserInfo_ActionInfo">
+      <EntityTypeMapping TypeName="IsTypeOf(Pstoh.OA.Model.R_UserInfo_ActionInfo)">
+        <MappingFragment StoreEntitySet="R_UserInfo_ActionInfo">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="HasPermission" ColumnName="HasPermission" />
+          <ScalarProperty Name="UserInfoID" ColumnName="UserInfoID" />
+          <ScalarProperty Name="ActionInfoID" ColumnName="ActionInfoID" />
+          <ScalarProperty Name="DelFlag" ColumnName="DelFlag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserInfoExt">
+      <EntityTypeMapping TypeName="IsTypeOf(Pstoh.OA.Model.UserInfoExt)">
+        <MappingFragment StoreEntitySet="UserInfoExt">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UserInfoId" ColumnName="UserInfoId" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="DelFlag" ColumnName="DelFlag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MenuInfo">
+      <EntityTypeMapping TypeName="IsTypeOf(Pstoh.OA.Model.MenuInfo)">
+        <MappingFragment StoreEntitySet="MenuInfo">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WF_Temp">
+      <EntityTypeMapping TypeName="IsTypeOf(Pstoh.OA.Model.WF_Temp)">
+        <MappingFragment StoreEntitySet="WF_Temp">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TepName" ColumnName="TepName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="TempForm" ColumnName="TempForm" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="DelFlag" ColumnName="DelFlag" />
+          <ScalarProperty Name="SubTime" ColumnName="SubTime" />
+          <ScalarProperty Name="ActityType" ColumnName="ActityType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WF_Instance">
+      <EntityTypeMapping TypeName="IsTypeOf(Pstoh.OA.Model.WF_Instance)">
+        <MappingFragment StoreEntitySet="WF_Instance">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="InstanceName" ColumnName="InstanceName" />
+          <ScalarProperty Name="StartBy" ColumnName="StartBy" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+          <ScalarProperty Name="Level" ColumnName="Level" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="DelFlag" ColumnName="DelFlag" />
+          <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+          <ScalarProperty Name="WFInstanceId" ColumnName="WFInstanceId" />
+          <ScalarProperty Name="WF_TempID" ColumnName="WF_TempID" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FileInfo">
+      <EntityTypeMapping TypeName="IsTypeOf(Pstoh.OA.Model.FileInfo)">
+        <MappingFragment StoreEntitySet="FileInfo">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="FileType" ColumnName="FileType" />
+          <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+          <ScalarProperty Name="FileSize" ColumnName="FileSize" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="DelFlag" ColumnName="DelFlag" />
+          <ScalarProperty Name="SubTime" ColumnName="SubTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WF_Step">
+      <EntityTypeMapping TypeName="IsTypeOf(Pstoh.OA.Model.WF_Step)">
+        <MappingFragment StoreEntitySet="WF_Step">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="StepName" ColumnName="StepName" />
+          <ScalarProperty Name="ProcessBy" ColumnName="ProcessBy" />
+          <ScalarProperty Name="SubTime" ColumnName="SubTime" />
+          <ScalarProperty Name="ProcessTime" ColumnName="ProcessTime" />
+          <ScalarProperty Name="ProcessResult" ColumnName="ProcessResult" />
+          <ScalarProperty Name="PorcessComment" ColumnName="PorcessComment" />
+          <ScalarProperty Name="StepStatus" ColumnName="StepStatus" />
+          <ScalarProperty Name="IsStartStep" ColumnName="IsStartStep" />
+          <ScalarProperty Name="IsEndStep" ColumnName="IsEndStep" />
+          <ScalarProperty Name="ParentStepId" ColumnName="ParentStepId" />
+          <ScalarProperty Name="WF_InstanceID" ColumnName="WF_InstanceID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="UserInfoRoleInfo" TypeName="Pstoh.OA.Model.UserInfoRoleInfo" StoreEntitySet="UserInfoRoleInfo">
+      <EndProperty Name="UserInfo">
+        <ScalarProperty Name="ID" ColumnName="UserInfo_ID" />
+      </EndProperty>
+      <EndProperty Name="RoleInfo">
+        <ScalarProperty Name="ID" ColumnName="RoleInfo_ID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="RoleInfoActionInfo" TypeName="Pstoh.OA.Model.RoleInfoActionInfo" StoreEntitySet="RoleInfoActionInfo">
+      <EndProperty Name="RoleInfo">
+        <ScalarProperty Name="ID" ColumnName="RoleInfo_ID" />
+      </EndProperty>
+      <EndProperty Name="ActionInfo">
+        <ScalarProperty Name="ID" ColumnName="ActionInfo_ID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="WF_InstanceFileInfo" TypeName="Pstoh.OA.Model.WF_InstanceFileInfo" StoreEntitySet="WF_InstanceFileInfo">
+      <EndProperty Name="WF_Instance">
+        <ScalarProperty Name="ID" ColumnName="WF_Instance_ID" />
+      </EndProperty>
+      <EndProperty Name="FileInfo">
+        <ScalarProperty Name="ID" ColumnName="FileInfo_ID" />
+      </EndProperty>
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>

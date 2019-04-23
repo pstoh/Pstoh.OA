@@ -14,9 +14,16 @@ namespace Pstoh.OA.Model
     
     public partial class OrderInfo
     {
-        public int Id { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public OrderInfo()
+        {
+            this.DelFlag = 0;
+        }
+    
+        public int ID { get; set; }
         public string Content { get; set; }
-        public int UserInfoId { get; set; }
+        public int UserInfoID { get; set; }
+        public short DelFlag { get; set; }
     
         public virtual UserInfo UserInfo { get; set; }
     }

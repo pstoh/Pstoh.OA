@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Pstoh.OA.UI.Portal.Controllers
 {
-	public class HomeController : Controller
+	public class HomeController : BaseController
 	{
 		public ActionResult Index()
 		{

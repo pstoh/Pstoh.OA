@@ -25,7 +25,16 @@ namespace Pstoh.OA.Model
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<OrderInfo> OrderInfo { get; set; }
         public virtual DbSet<UserInfo> UserInfo { get; set; }
+        public virtual DbSet<OrderInfo> OrderInfo { get; set; }
+        public virtual DbSet<RoleInfo> RoleInfo { get; set; }
+        public virtual DbSet<ActionInfo> ActionInfo { get; set; }
+        public virtual DbSet<R_UserInfo_ActionInfo> R_UserInfo_ActionInfo { get; set; }
+        public virtual DbSet<UserInfoExt> UserInfoExt { get; set; }
+        public virtual DbSet<MenuInfo> MenuInfo { get; set; }
+        public virtual DbSet<WF_Temp> WF_Temp { get; set; }
+        public virtual DbSet<WF_Instance> WF_Instance { get; set; }
+        public virtual DbSet<FileInfo> FileInfo { get; set; }
+        public virtual DbSet<WF_Step> WF_Step { get; set; }
     }
 }

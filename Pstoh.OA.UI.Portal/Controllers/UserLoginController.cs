@@ -48,7 +48,7 @@ namespace Pstoh.OA.UI.Portal.Controllers
 			String name = Request["loginName"];
 			String pwd= Request["loginPwd"];
 			short delNormal = (short)OA.Model.Enum.DelFlagEnum.Normal;
-			UserInfo user = UserInfoService.GetEntities(u => u.Name == name &&
+			UserInfo user = UserInfoService.GetEntities(u => u.UName == name &&
 			  u.Pwd == pwd &&
 			  u.DelFlag == delNormal).FirstOrDefault();
 			if (user == null)

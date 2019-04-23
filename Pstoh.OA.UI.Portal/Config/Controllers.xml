@@ -3,6 +3,9 @@
 
   <object type="Pstoh.OA.UI.Portal.Controllers.UserInfoController, Pstoh.OA.UI.Portal" singleton="false" >
     <property name="UserInfoService" ref="UserInfoService" />
+    <property name="RoleInfoService" ref="RoleInfoService" />
+    <property name="R_UserInfo_ActionInfoService" ref="R_UserInfo_ActionInfoService" />
+    <property name="ActionInfoService" ref="ActionInfoService" />
   </object>
 
   <object type="Pstoh.OA.UI.Portal.Controllers.UserLoginController, Pstoh.OA.UI.Portal" singleton="false" >

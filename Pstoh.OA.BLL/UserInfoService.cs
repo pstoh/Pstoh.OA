@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Pstoh.OA.Model.Param;
 
 namespace Pstoh.OA.BLL
 {
@@ -12,7 +13,29 @@ namespace Pstoh.OA.BLL
 	{
 		//protected override void SetCurrentDal()
 		//{
-			//CurrentDal = DbSession.UserInfoDal;
+		//CurrentDal = DbSession.UserInfoDal;
 		//}
+		//分页获取数据
+		public IQueryable<UserInfo> GetPageData(UserQueryParam queryParam)
+		{
+			int normalFlag = (int)OA.Model.Enum.DelFlagEnum.Normal;
+			var tmp = DbSession.UserInfoDal.GetEntities(u => u.DelFlag == normalFlag);
+
+			if (!String.IsNullOrEmpty(queryParam.SchName))
+			{
+				tmp = tmp.Where(u => u.UName.Contains(queryParam.SchName));
+			}
+
+			if (!String.IsNullOrEmpty(queryParam.SchRemark))
+			{
+				tmp = tmp.Where(u => u.Remark.Contains(queryParam.SchRemark));
+			}
+
+			//分页
+			queryParam.Total = tmp.Count();
+			return tmp.OrderBy(u=>u.ID)
+				.Skip(queryParam.PageSize * (queryParam.PageIndex - 1)).
+				Take(queryParam.PageSize).AsQueryable();
+		}
 	}
 }

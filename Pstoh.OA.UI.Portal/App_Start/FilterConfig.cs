@@ -10,7 +10,7 @@ namespace Pstoh.OA.UI.Portal
 		{
 			//filters.Add(new HandleErrorAttribute());
 			filters.Add(new UI.Portal.Models.MyExceptionFilterAttribute());
-			filters.Add(new LoginCheckFilter() { IsCheck = true });
+			//filters.Add(new LoginCheckFilter() { IsCheck = true });
 		}
 	}
 }

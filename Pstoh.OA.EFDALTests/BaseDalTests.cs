@@ -19,7 +19,7 @@ namespace Pstoh.OA.EFDAL.Tests
 		{
 
 			UserInfo user = new UserInfo();
-			user.Name = "月下一棵松";
+			user.UName = "月下一棵松";
 			bool tag = dal.Add(user);
 			Assert.AreEqual(true, tag == true);
 		}
@@ -27,7 +27,7 @@ namespace Pstoh.OA.EFDAL.Tests
 		[TestMethod()]
 		public void GetPageEntitiesTest()
 		{
-			var tmp = dal.GetEntities(u=>u.Id>0);
+			var tmp = dal.GetEntities(u=>u.ID>0);
 			Assert.AreEqual(true, tmp.Count() >= 2);
 		}
 	}

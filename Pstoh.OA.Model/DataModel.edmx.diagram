@@ -4,10 +4,26 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c207d0e8d53b443590995fe073a096a9" Name="Diagram1" ZoomLevel="80">
-        <EntityTypeShape EntityType="Pstoh.OA.Model.OrderInfo" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Pstoh.OA.Model.UserInfo" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
-        <AssociationConnector Association="Pstoh.OA.Model.FK_UserInfoOrderInfo" ManuallyRouted="false" />
+      <Diagram DiagramId="c207d0e8d53b443590995fe073a096a9" Name="Diagram1" ZoomLevel="16">
+        <EntityTypeShape EntityType="Pstoh.OA.Model.UserInfo" Width="1.5" PointX="0.5" PointY="8.5" />
+        <EntityTypeShape EntityType="Pstoh.OA.Model.OrderInfo" Width="1.5" PointX="3.125" PointY="7" />
+        <EntityTypeShape EntityType="Pstoh.OA.Model.RoleInfo" Width="1.5" PointX="3.875" PointY="15.375" />
+        <EntityTypeShape EntityType="Pstoh.OA.Model.ActionInfo" Width="1.5" PointX="5.375" PointY="9.625" />
+        <EntityTypeShape EntityType="Pstoh.OA.Model.R_UserInfo_ActionInfo" Width="1.5" PointX="7.625" PointY="9.625" />
+        <EntityTypeShape EntityType="Pstoh.OA.Model.UserInfoExt" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Pstoh.OA.Model.MenuInfo" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Pstoh.OA.Model.WF_Temp" Width="1.5" PointX="3.75" PointY="3.25" />
+        <EntityTypeShape EntityType="Pstoh.OA.Model.WF_Instance" Width="1.5" PointX="6" PointY="2.75" />
+        <EntityTypeShape EntityType="Pstoh.OA.Model.FileInfo" Width="1.5" PointX="8.25" PointY="1.125" />
+        <EntityTypeShape EntityType="Pstoh.OA.Model.WF_Step" Width="1.5" PointX="8.25" PointY="4.625" />
+        <AssociationConnector Association="Pstoh.OA.Model.UserInfoOrderInfo" />
+        <AssociationConnector Association="Pstoh.OA.Model.UserInfoRoleInfo" />
+        <AssociationConnector Association="Pstoh.OA.Model.UserInfoR_UserInfo_ActionInfo" />
+        <AssociationConnector Association="Pstoh.OA.Model.RoleInfoActionInfo" />
+        <AssociationConnector Association="Pstoh.OA.Model.ActionInfoR_UserInfo_ActionInfo" />
+        <AssociationConnector Association="Pstoh.OA.Model.WF_TempWF_Instance" />
+        <AssociationConnector Association="Pstoh.OA.Model.WF_InstanceFileInfo" />
+        <AssociationConnector Association="Pstoh.OA.Model.WF_InstanceWF_Step" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
