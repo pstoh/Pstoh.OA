@@ -16,5 +16,12 @@ namespace Pstoh.OA.IBLL
 		/// <param name="queryParam"></param>
 		/// <returns></returns>
 		IQueryable<UserInfo> GetPageData(UserQueryParam queryParam);
+		/// <summary>
+		/// 给用户设置权限
+		/// </summary>
+		/// <param name="uid"></param>
+		/// <param name="roleIds"></param>
+		bool  SetRole(int uid, List<int> roleIds);
+
 	}
 }

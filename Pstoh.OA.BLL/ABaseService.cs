@@ -52,5 +52,17 @@ namespace Pstoh.OA.BLL
 			CurrentDal.Update(entity);
 			 return DbSession.SaveChange() > 0;
 		}
+
+		public bool Delete(int id)
+		{
+			CurrentDal.Delete(id);
+			return DbSession.SaveChange()>0;
+		}
+
+		public int DeleteListByIds(List<int> idList)
+		{
+			CurrentDal.DeleteListByIds(idList);
+			return DbSession.SaveChange();
+		}
 	}
 }

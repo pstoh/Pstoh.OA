@@ -72,5 +72,115 @@ namespace Pstoh.OA.UI.Portal.Controllers
 			return Content("Ok");
 		}
 		#endregion
+
+		#region 修改
+		public ActionResult Edit(int id)
+		{
+			ViewData.Model = UserInfoService.GetEntities(u => u.ID == id).FirstOrDefault();
+			return View();
+		}
+
+		[HttpPost]
+		public ActionResult Edit(UserInfo user)
+		{
+			UserInfoService.Update(user);
+			return Content("OK");
+		}
+		#endregion
+
+		#region 删除
+		[HttpPost]
+		public ActionResult Delete(String uid)
+		{
+			if (String.IsNullOrEmpty(uid))
+			{
+				return Content("请选择要删除的条目!");
+			}
+
+			String[] strIds = uid.Split(',');
+			List<int> idList = new List<int>();
+			foreach (var item in strIds)
+			{
+				idList.Add(int.Parse(item));
+			}
+
+			UserInfoService.DeleteListByIds(idList);
+			return Content("OK");
+		}
+		#endregion
+
+		#region 给用户设置角色
+		public ActionResult SetRole(int id)
+		{
+			//1.找到要设置角色的用户
+			var user = UserInfoService.GetEntities(u => u.ID == id).FirstOrDefault();
+			//2.将所有角色发送到前台
+			int normal = (int)OA.Model.Enum.DelFlagEnum.Normal;
+			ViewBag.AllRoles = RoleInfoService.GetEntities(r => r.DelFlag == normal).ToList();
+			//用户关联的权限
+			ViewBag.ExitsRoles = (from r in user.RoleInfo
+								  select r.ID).ToList();
+				return View(user);
+		}
+		//给用户设置权限
+		public ActionResult ProcessSetRole(int uid)
+		{
+			List<int> roleIds = new List<int>();
+			foreach (var key in Request.Form.AllKeys)
+			{
+				if (key.StartsWith("ckb_"))
+				{
+					roleIds.Add(int.Parse(key.Replace("ckb_","")));
+				}
+			}
+			UserInfoService.SetRole(uid, roleIds);
+			return Content("OK");
+		}
+		#endregion
+
+		#region 设置特殊权限
+		public ActionResult  SetAction(int uid)
+		{
+			ViewBag.User = UserInfoService.GetEntities(u => u.ID == uid).FirstOrDefault();
+			int normal = (int)OA.Model.Enum.DelFlagEnum.Normal;ViewData.Model = ActionInfoService.GetEntities(a => a.DelFlag == normal).ToList();
+			return View();
+		}
+
+		public ActionResult  DeleteUserAction(int uid,int actionId)
+		{
+			var rUser = R_UserInfo_ActionInfoService.GetEntities(r => r.ActionInfoID == actionId &&
+			  r.UserInfoID == uid).FirstOrDefault();
+
+			if (rUser!=null)
+			{
+				R_UserInfo_ActionInfoService.Delete(rUser.ID);
+			}
+
+			return Content("OK");
+		}
+		//当前用户设置特殊权限
+		public ActionResult SetUserAction(int uid,int aid,int value)
+		{
+			int normal = (int)OA.Model.Enum.DelFlagEnum.Normal;
+			var rUser = R_UserInfo_ActionInfoService.GetEntities(r => r.UserInfoID == uid &&
+			  r.ActionInfoID == aid &&
+			  r.DelFlag == normal).FirstOrDefault();
+
+			if (rUser != null)
+			{
+				rUser.HasPermission = value == 0 ? true : false;
+				R_UserInfo_ActionInfoService.Update(rUser);
+			}
+			else
+			{
+				R_UserInfo_ActionInfo tmp = new R_UserInfo_ActionInfo();
+				tmp.UserInfoID = uid;
+				tmp.ActionInfoID = aid;
+				tmp.HasPermission = value == 0 ? true : false;
+				R_UserInfo_ActionInfoService.Add(tmp);
+			}
+			return Content("OK");
+		}
+		#endregion
 	}
 }

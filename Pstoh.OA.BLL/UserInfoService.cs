@@ -11,6 +11,7 @@ namespace Pstoh.OA.BLL
 {
 	public partial class UserInfoService : ABaseService<UserInfo>, IUserInfoService
 	{
+
 		//protected override void SetCurrentDal()
 		//{
 		//CurrentDal = DbSession.UserInfoDal;
@@ -36,6 +37,18 @@ namespace Pstoh.OA.BLL
 			return tmp.OrderBy(u=>u.ID)
 				.Skip(queryParam.PageSize * (queryParam.PageIndex - 1)).
 				Take(queryParam.PageSize).AsQueryable();
+		}
+
+		public bool SetRole(int uid, List<int> roleIds)
+		{
+			var user = CurrentDal.GetEntities(u => u.ID == uid).FirstOrDefault();
+			user.RoleInfo.Clear();
+			var roles = DbSession.RoleInfoDal.GetEntities(r => roleIds.Contains(r.ID));
+			foreach (var item in roles)
+			{
+				user.RoleInfo.Add(item);
+			}
+			return DbSession.SaveChange() > 0;
 		}
 	}
 }

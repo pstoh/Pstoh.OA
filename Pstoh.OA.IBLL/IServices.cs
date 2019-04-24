@@ -32,12 +32,13 @@ namespace Pstoh.OA.IBLL
     public partial interface IRoleInfoService:IBaseService<RoleInfo>
     {
     }
-	
-    public partial interface IUserInfoService:IBaseService<UserInfo>
-    {
-    }
-	
-    public partial interface IUserInfoExtService:IBaseService<UserInfoExt>
+
+	public partial interface IUserInfoService : IBaseService<UserInfo>
+	{
+		
+	}
+
+	public partial interface IUserInfoExtService:IBaseService<UserInfoExt>
     {
     }
 	

@@ -12,7 +12,7 @@ namespace Pstoh.OA.EFDAL
 	/// <summary>
 	/// 本类用于封装所有dal增删改查方法
 	/// </summary>
-	public class BaseDal <T> :IBaseDal<T> where T : class, new()
+	public class BaseDal <T> : IBaseDal<T> where T : class, new()
 	{
 		public DbContext Db { get { return DbContextFactory.GetCurrentDbContext(); } }
 		/// <summary>
@@ -84,9 +84,28 @@ namespace Pstoh.OA.EFDAL
 		/// <returns></returns>
 		public bool Delete(T entity)
 		{
-			Db.Entry<T>(entity).State = EntityState.Deleted;
+			//Db.Entry<T>(entity).State = EntityState.Deleted;
 			//return Db.SaveChanges() > 0;
+			Db.Entry<T>(entity).Property("DelFlag").OriginalValue = (short)OA.Model.Enum.DelFlagEnum.Deleted;
+			Db.Entry<T>(entity).Property("DelFlag").IsModified = true;
 			return true;
+		}
+
+		public bool Delete(int id)
+		{
+			var entity = Db.Set<T>().Find(id);
+			Db.Entry<T>(entity).Property("DelFlag").OriginalValue = (short)OA.Model.Enum.DelFlagEnum.Deleted;
+			Db.Entry<T>(entity).Property("DelFlag").IsModified = true;
+			return true;
+		}
+
+		public int DeleteListByIds(List<int> idList)
+		{
+			foreach (var item in idList)
+			{
+				Delete(item);
+			}
+			return idList.Count();
 		}
 	}
 }

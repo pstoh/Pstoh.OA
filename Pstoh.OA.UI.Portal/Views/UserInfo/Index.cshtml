@@ -22,11 +22,11 @@
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
 <script type="text/javascript">
     $(function () {
+        initTable();
         $("#addDialogDiv").css("display", "none");
         $("#editDialogDiv").css("display", "none");
         $("#setRoleDialogDiv").css("display", "none");
         $("#setActionDialogDiv").css("display", "none");
-        initTable();
         bindSearchBtnClick();
     });
 
@@ -40,7 +40,7 @@
 
     function initTable(queryParam) {
         $('#tt').datagrid({
-            url: '/UserInfo/GetAllUserInfos',//rows:一页有多少条，page：请求当前页
+            url: '/UserInfo/GetUserInfos',//rows:一页有多少条，page：请求当前页
             title: '用户信息列表',
             width: 700,
             height: 400,
@@ -181,7 +181,26 @@
     }
     //删除
     function deleteEvent(){
+        //获取用户要删除的数据
+        var selectRows = $('#tt').datagrid('getSelections');
+        if (selectRows.length <= 0) {
+            $.messager.alert('错误提示', '请选择要删除的数据!', 'question');
+            return;
+        }
 
+        var sid = '';
+        for (var key in selectRows) {
+            sid += sid+selectRows[key].ID+',';
+        }
+        sid = sid.substr(0, sid.length - 1);
+        $.post('/UserInfo/Delete', { uid: sid }, function (data) {
+            if (data == 'OK') {
+                initTable();
+            }
+            else {
+                $.messager.alert('消息提示', data, 'question');
+            }
+        });
     }
     //设置权限
     function setRole(){
@@ -202,7 +221,9 @@
 
     <!----------------弹出来的添加的 对话框- 开始------------>
     <div id="addDialogDiv">
-        @using (Ajax.BeginForm("Add", "UserInfo", new AjaxOptions() { OnSuccess = "afterAdd" }))
+        @using (Ajax.BeginForm("Add", "UserInfo", new AjaxOptions() { OnSuccess = "afterAdd",
+            HttpMethod="Post"
+        }))
         {
             <table class="t3">
                 <tr>
